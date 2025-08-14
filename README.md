@@ -2,9 +2,8 @@
 
 A blog posting platform built with Django, allowing users to create, edit, and manage blog posts through an admin dashboard.
 
-## 🌐 Live Demo
-You can view the live admin panel here:  
-🔗 **[Blog Admin Panel](https://makala.pythonanywhere.com/admin/)**
+## 🌐 Live Website  
+🔗 **[Visit the Blog](https://makala.pythonanywhere.com/)**
 
 ---
 
@@ -20,9 +19,30 @@ You can view the live admin panel here:
 - **Frontend:** HTML, CSS (Django Templates)
 - **Hosting:** PythonAnywhere
 
-## 🚀 Getting Started (Local Setup)
+## 🚀 Getting Started Locally  
 
-### 1️⃣ Clone the repository
-```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+1. **Clone the repository**  
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
+   ```
+
+2. **Set up a virtual environment**  
+   ```bash
+   python -m venv myvenv
+   source myvenv/bin/activate   # macOS/Linux  
+   myvenv\Scripts\Activate.ps1  # Windows PowerShell  
+   ```
+
+3. **Install dependencies**  
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Run the server**  
+   ```bash
+   python manage.py runserver
+   ```
+
+5. **Access the site**  
+   Visit `http://127.0.0.1:8000/` in your browser.  
