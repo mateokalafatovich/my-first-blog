@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="tag-page">
+        <h2>Posts tagged with "{{ tag.name }}"</h2>
+        <p class="tag-info">{{ posts.count }} post{{ posts.count|pluralize }} found</p>
+        
+        <div class="navigation-links">
+            <a href="{% url 'post_list' %}" class="btn btn-secondary">← Back to All Posts</a>
+        </div>
+
+        <div class="posts-section">
+            {% for post in posts %}
+                <article class="post">
+                    <time class="date">
+                        {{ post.published_date }}
+                    </time>
+                    <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+                    <p>{{ post.text|truncatewords:50|linebreaksbr }}</p>
+                    
+                    <!-- Post Meta -->
+                    <div class="post-meta">
+                        <span class="post-stats">
+                            💬 {{ post.get_comment_count }} comment{{ post.get_comment_count|pluralize }}
+                            • ❤️ {{ post.get_like_count }} like{{ post.get_like_count|pluralize }}
+                        </span>
+                        {% if post.tags.all %}
+                            <div class="post-tags">
+                                {% for post_tag in post.tags.all %}
+                                    <a href="{% url 'posts_by_tag' slug=post_tag.slug %}" class="tag-mini {% if post_tag == tag %}current-tag{% endif %}">
+                                        {{ post_tag.name }}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </article>
+            {% empty %}
+                <div class="no-results">
+                    <p>No posts found with the tag "{{ tag.name }}".</p>
+                    <p><a href="{% url 'post_list' %}">Browse all posts</a></p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
