@@ -1,3 +1,4 @@
+/* Original styles */
 .page-header {
     background-color: #C25100;
     margin-top: 0;
@@ -68,4 +69,160 @@ h4 {
 .btn-secondary:hover {
     color: #FFFFFF;
     background-color: #C25100;
+}
+
+/* New styles for comments and likes */
+
+/* Like Section Styles */
+.like-section {
+    margin: 30px 0;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+}
+
+.btn-like {
+    background: none;
+    border: 2px solid #C25100;
+    color: #C25100;
+    padding: 8px 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Lobster', cursive;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-like:hover {
+    background-color: #C25100;
+    color: #ffffff;
+}
+
+.btn-like.liked {
+    background-color: #C25100;
+    color: #ffffff;
+}
+
+.btn-like .heart {
+    margin-right: 5px;
+}
+
+/* Comments Section Styles */
+.comments-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #C25100;
+}
+
+.comments-section h3 {
+    color: #C25100;
+    margin-bottom: 20px;
+}
+
+/* Comment Form Styles */
+.comment-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border-left: 4px solid #C25100;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 100px;
+    box-sizing: border-box;
+}
+
+.comment-form textarea:focus {
+    outline: none;
+    border-color: #C25100;
+}
+
+/* Individual Comment Styles */
+.comment {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-left: 4px solid #C25100;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.comment-header {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.comment-author {
+    color: #C25100;
+    font-weight: bold;
+}
+
+.comment-date {
+    color: #828282;
+    font-size: 12px;
+    float: right;
+}
+
+.comment-content {
+    color: #333;
+    line-height: 1.6;
+}
+
+/* No comments message */
+.no-comments {
+    color: #828282;
+    font-style: italic;
+    text-align: center;
+    padding: 30px 0;
+}
+
+/* Login prompt styling */
+.login-prompt {
+    color: #666;
+    font-style: italic;
+}
+
+.login-prompt a {
+    color: #C25100;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-prompt a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .comment-form {
+        padding: 15px;
+    }
+    
+    .comment {
+        padding: 12px;
+    }
+    
+    .btn-like {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
 }

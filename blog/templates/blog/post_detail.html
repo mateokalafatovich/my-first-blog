@@ -3,7 +3,7 @@
 {% block content %}
     <article class="post">
         <aside class="actions">
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated and user == post.author %}
                 <a class="btn btn-secondary" href="{% url 'post_edit' pk=post.pk %}">
                     {% include './icons/pencil-fill.svg' %}
                 </a>
@@ -17,4 +17,95 @@
         <h2>{{ post.title }}</h2>
         <p>{{ post.text|linebreaksbr }}</p>
     </article>
+
+    <!-- Like Section -->
+    <div class="like-section">
+        {% if user.is_authenticated %}
+            <button id="like-btn" class="btn btn-like {% if is_liked %}liked{% endif %}" 
+                    data-post-id="{{ post.pk }}">
+                <span class="heart">❤️</span>
+                <span id="like-text">{% if is_liked %}Unlike{% else %}Like{% endif %}</span>
+                (<span id="like-count">{{ like_count }}</span>)
+            </button>
+        {% else %}
+            <p class="login-prompt">
+                <a href="{% url 'admin:login' %}">Login</a> to like this post. ({{ like_count }} likes)
+            </p>
+        {% endif %}
+    </div>
+
+    <!-- Comments Section -->
+    <div class="comments-section">
+        <h3>Comments ({{ post.get_comment_count }})</h3>
+        
+        {% if user.is_authenticated %}
+            <form method="post" class="comment-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ comment_form.content.id_for_label }}">Your Comment:</label>
+                    {{ comment_form.content }}
+                </div>
+                <button type="submit" class="btn btn-secondary">Post Comment</button>
+            </form>
+        {% else %}
+            <p class="login-prompt">
+                <a href="{% url 'admin:login' %}">Login</a> to post a comment.
+            </p>
+        {% endif %}
+        
+        <!-- Display Comments -->
+        <div class="comments-list">
+            {% for comment in comments %}
+                <div class="comment">
+                    <div class="comment-header">
+                        <strong class="comment-author">{{ comment.author.username }}</strong>
+                        <span class="comment-date">{{ comment.created_date|date:"M d, Y H:i" }}</span>
+                    </div>
+                    <div class="comment-content">
+                        {{ comment.content|linebreaksbr }}
+                    </div>
+                </div>
+            {% empty %}
+                <p class="no-comments">No comments yet. Be the first to comment!</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- AJAX Script for Like Button -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const likeBtn = document.getElementById('like-btn');
+        if (likeBtn) {
+            likeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const postId = this.getAttribute('data-post-id');
+                
+                fetch(`/post/${postId}/like/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const likeText = document.getElementById('like-text');
+                    const likeCount = document.getElementById('like-count');
+                    
+                    if (data.liked) {
+                        this.classList.add('liked');
+                        likeText.textContent = 'Unlike';
+                    } else {
+                        this.classList.remove('liked');
+                        likeText.textContent = 'Like';
+                    }
+                    likeCount.textContent = data.like_count;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        }
+    });
+    </script>
 {% endblock %}
