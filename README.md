@@ -11,10 +11,10 @@ Built to explore full-stack web development with Python, Django, HTML, CSS, and 
 ## ✨ Features
 - Secure Django admin panel for managing blog posts.
 - Create and edit blog entries.
-– Readers can leave comments on posts.
-– Users can like and unlike posts.
-– Search posts by title or content.
-– Optimized for mobile and desktop.
+- Readers can leave comments on posts.
+- Users can like and unlike posts.
+- Search posts by title or content.
+- Optimized for mobile and desktop.
 - Django-powered backend with SQLite (default).
 
 ## 🛠️ Tech Stack
