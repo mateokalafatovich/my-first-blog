@@ -12,6 +12,7 @@ class Post(models.Model):
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
+    tags = models.ManyToManyField('Tag', blank=True, related_name='posts')
 
     def publish(self):
         self.published_date = timezone.now()
@@ -58,3 +59,18 @@ class Like(models.Model):
         
     def __str__(self):
         return f'{self.user.username} likes {self.post.title}'
+
+# Tag Model
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(max_length=50, unique=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['name']
+    
+    def __str__(self):
+        return self.name
+    
+    def get_post_count(self):
+        return self.posts.filter(published_date__isnull=False).count()
