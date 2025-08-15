@@ -1,6 +1,7 @@
 # Django Blog Website
 
-A blog posting platform built with Django, allowing users to create, edit, and manage blog posts through an admin dashboard.
+A Django-based blogging platform that allows users to read, search, and interact with posts.
+Built to explore full-stack web development with Python, Django, HTML, CSS, and Bootstrap.
 
 ## 🌐 Live Website  
 🔗 **[Visit the Blog](https://makala.pythonanywhere.com/)**
@@ -9,40 +10,72 @@ A blog posting platform built with Django, allowing users to create, edit, and m
 
 ## ✨ Features
 - Secure Django admin panel for managing blog posts.
-- Create, edit, and delete blog entries.
-- Rich text content support.
+- Create and edit blog entries.
+– Readers can leave comments on posts.
+– Users can like and unlike posts.
+– Search posts by title or content.
+– Optimized for mobile and desktop.
 - Django-powered backend with SQLite (default).
 
 ## 🛠️ Tech Stack
 - **Backend:** Django (Python)
 - **Database:** SQLite (default, can be replaced with PostgreSQL/MySQL)
-- **Frontend:** HTML, CSS (Django Templates)
+- **Frontend:** HTML, CSS, Bootstrap
 - **Hosting:** PythonAnywhere
+
+---
+
+## Project Structure
+```bash
+my-first-blog/
+├── blog/                # Main blog app
+│   ├── migrations/      # Database migrations
+│   ├── static/          # CSS, JS, and images
+│   ├── templates/       # HTML templates
+│   ├── admin.py         # Admin interface
+│   ├── models.py        # Database models
+│   ├── urls.py          # URL routing
+│   └── views.py         # View logic
+├── mysite/              # Project configuration
+├── manage.py            # Django management script
+└── README.md            # Project README
+```
+
+---
 
 ## 🚀 Getting Started Locally  
 
-1. **Clone the repository**  
-   ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
-   ```
+**1. Clone the Repository**
 
-2. **Set up a virtual environment**  
-   ```bash
-   python -m venv myvenv
-   source myvenv/bin/activate   # macOS/Linux  
-   myvenv\Scripts\Activate.ps1  # Windows PowerShell  
-   ```
+```bash
+git clone https://github.com/mateokalafatovich/my-first-blog.git
+cd my-first-blog
+```
 
-3. **Install dependencies**  
-   ```bash
-   pip install -r requirements.txt
-   ```
+**2. Create a Virtual Environment**
 
-4. **Run the server**  
-   ```bash
-   python manage.py runserver
-   ```
+```bash
+python -m venv .venv
+source .venv/bin/activate  # On Mac/Linux
+.\.venv\Scripts\activate   # On Windows
+```
 
-5. **Access the site**  
-   Visit `http://127.0.0.1:8000/` in your browser.  
+**3. Install Dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+**4. Apply Migrations**
+
+```bash
+python manage.py migrate
+```
+
+**5. Run the Server**
+
+```bash
+python manage.py runserver
+```
+
+**6.** Open your browser and go to http://127.0.0.1:8000
